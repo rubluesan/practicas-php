@@ -1,6 +1,7 @@
 <?php
+include __DIR__ . '/../persistence/class_cuentaDAO.php';
+include __DIR__ . '/../persistence/class_clienteDAO.php';
 
-include '../persistence/class_cuentaDAO.php';
 
 class cuenta
 {

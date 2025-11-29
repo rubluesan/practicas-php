@@ -1,6 +1,6 @@
 <?php
-include 'class_db.php';
-class cuentaDAO
+require_once 'class_db.php';
+class cuentaDAO extends db
 {
 
 	public function inserir($cuenta)
@@ -9,9 +9,8 @@ class cuentaDAO
 		$query = "insert into cuenta (codigo, saldo, cliente) values ('" . $cuenta->getCodigo() . "',
 			'" . $cuenta->getSaldo() . "', '" . $cuenta->getCliente() . "');";
 
-		$con = new db();
-		$resultado = $con->consulta($query);
-		$con->close();
+		$resultado = $this->consulta($query);
+		$this->close();
 
 		return $resultado;
 	}
@@ -21,9 +20,8 @@ class cuentaDAO
 
 		$query = "delete from cuenta where id = '" . $id . "';";
 
-		$con = new db();
-		$resultado = $con->consulta($query);
-		$con->close();
+		$resultado = $this->consulta($query);
+		$this->close();
 
 		return $resultado;
 	}
@@ -33,9 +31,8 @@ class cuentaDAO
 
 		$query = "update cuenta set codigo= '" . $cuenta->getCodigo() . "', saldo= '" . $cuenta->getSaldo() . "', cliente= '" . $cuenta->getCliente() . "' where id = '" . $cuenta->getId() . "';";
 
-		$con = new db();
-		$resultado = $con->consulta($query);
-		$con->close();
+		$resultado = $this->consulta($query);
+		$this->close();
 
 		return $resultado;
 	}
@@ -45,9 +42,8 @@ class cuentaDAO
 
 		$query = "select * from cuenta where id = '" . $id . "';";
 
-		$con = new db();
-		$consulta = $con->consulta($query);
-		$con->close();
+		$consulta = $this->consulta($query);
+		$this->close();
 
 		$row = $consulta->fetch_object();
 
@@ -63,9 +59,8 @@ class cuentaDAO
 	{
 		$query = "SELECT * FROM cuenta;";
 
-		$con = new db();
-		$consulta = $con->consulta($query);
-		$con->close();
+		$consulta = $this->consulta($query);
+		$this->close();
 
 		$arrayCuentas = array();
 		foreach ($consulta as $row) {
@@ -81,9 +76,8 @@ class cuentaDAO
 	{
 		$query = "select nombre, apellidos FROM cliente where id = '".$cuenta->getCliente()."';";
 
-		$con = new db();
-		$consulta = $con->consulta($query);
-		$con->close();
+		$consulta = $this->consulta($query);
+		$this->close();
 
 		$nombreApellidos = "";
 		$row = $consulta->fetch_object();

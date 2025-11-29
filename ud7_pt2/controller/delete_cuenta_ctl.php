@@ -5,7 +5,7 @@ require_once '../model/persistence/class_cuentaDAO.php';
 require_once '../view/printMsg.php';
 require_once '../view/linkInicio.php';
 
-$cuentaDAO = new clienteDAO();
+$cuentaDAO = new cuentaDAO();
 
 // comprobamos si la cuenta existe antes de eliminarla
 if (isset($_REQUEST['id'])) {

@@ -6,12 +6,12 @@
 </head>
 
 <body>
-    <h2>Edición de <?php echo $cuenta->getCodigo()?></h2>
+    <h2>Edición de <?php echo $cuenta->getCodigo() ?></h2>
     <form action="../controller/edit_cuenta_ctl.php" method='post'>
         <table border='1' cellpadding='2' cellspacing='2'>
             <tr>
                 <td>Id</td>
-                <td><input type='text' name='id' value="<?php echo $cuenta->getId() ?>" size='50' readonly/></td>
+                <td><input type='text' name='id' value="<?php echo $cuenta->getId() ?>" size='50' readonly /></td>
             </tr>
             <tr>
                 <td>Codigo</td>
@@ -19,11 +19,21 @@
             </tr>
             <tr>
                 <td>Saldo</td>
-                <td><input type='text' name='saldo' value="<?php echo $cuenta->getSaldo() ?>" size='50' /></td>
+                <td><input type='number' name='saldo' value="<?php echo $cuenta->getSaldo() ?>" size='50' /></td>
             </tr>
             <tr>
                 <td>Cliente</td>
-                <td><input type='text' name='cliente' value="<?php echo $cuenta->getCliente() ?>" size='50' /></td>
+                <td>
+                    <select name="cliente">
+                        <?php 
+                        foreach ($arrayClientes as $cliente) {
+                        ?>
+                        <option value="<?php echo $cliente->getId() ?>"><?php echo $cliente->getNombre()." ".$cliente->getApellidos() ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </td>
             </tr>
         </table><br />
         <input type='submit' name='submit' value='Modifica' />
